@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Verification</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0f172a;
+            color: #06b6d4;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 { color: #22d3ee; }
+        .check { color: #10b981; }
+        .fail { color: #ef4444; }
+        .test { 
+            background: #1e293b;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #06b6d4;
+        }
+        button {
+            background: #06b6d4;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        button:hover { background: #22d3ee; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Deployment Verification Tool</h1>
+    <p>Use this page to verify your deployment is working correctly.</p>
+    
+    <button onclick="runTests()">▶️ Run All Tests</button>
+    <button onclick="location.href='index.html'">🏠 Go to Main Site</button>
+    
+    <div id="results"></div>
+    
+    <script>
+        function runTests() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Running Tests...</h2>';
+            
+            const tests = [
+                {
+                    name: 'JavaScript Enabled',
+                    test: () => true,
+                    fix: 'Enable JavaScript in browser settings'
+                },
+                {
+                    name: 'app.js Accessible',
+                    test: async () => {
+                        try {
+                            const res = await fetch('app.js');
+                            return res.ok;
+                        } catch { return false; }
+                    },
+                    fix: 'Ensure app.js is in root directory'
+                },
+                {
+                    name: 'styles.css Accessible',
+                    test: async () => {
+                        try {
+                            const res = await fetch('styles.css');
+                            return res.ok;
+                        } catch { return false; }
+                    },
+                    fix: 'Ensure styles.css is in root directory'
+                },
+                {
+                    name: 'Tailwind CDN Accessible',
+                    test: async () => {
+                        try {
+                            const res = await fetch('https://cdn.tailwindcss.com');
+                            return res.ok;
+                        } catch { return false; }
+                    },
+                    fix: 'Check internet connection'
+                },
+                {
+                    name: 'Main Content Element Exists',
+                    test: () => !!document.getElementById('mainContent'),
+                    fix: 'Check index.html structure'
+                }
+            ];
+            
+            let html = '';
+            let passed = 0;
+            
+            Promise.all(tests.map(async t => {
+                const result = await t.test();
+                if (result) passed++;
+                return {
+                    name: t.name,
+                    result,
+                    fix: t.fix
+                };
+            })).then(testResults => {
+                testResults.forEach(r => {
+                    html += `
+                        <div class="test">
+                            <strong>${r.result ? '<span class="check">✅</span>' : '<span class="fail">❌</span>'} ${r.name}</strong>
+                            ${!r.result ? `<br><small>Fix: ${r.fix}</small>` : ''}
+                        </div>
+                    `;
+                });
+                
+                html = `<h2>Test Results: ${passed}/${tests.length} Passed</h2>` + html;
+                
+                if (passed === tests.length) {
+                    html += '<div class="test" style="border-color: #10b981;"><strong class="check">🎉 All tests passed! Your deployment is working correctly.</strong></div>';
+                } else {
+                    html += '<div class="test" style="border-color: #ef4444;"><strong class="fail">⚠️ Some tests failed. Please fix the issues above.</strong></div>';
+                }
+                
+                results.innerHTML = html;
+            });
+        }
+        
+        // Auto-run on load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

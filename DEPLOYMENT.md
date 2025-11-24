@@ -175,6 +175,16 @@ Add to `index.html` in `<head>`:
 
 ## 🐛 Troubleshooting
 
+### Content Not Visible After Deployment
+**Symptoms:** Blank page or partial content
+**Solutions:**
+1. Hard refresh: `Ctrl + Shift + R` (Windows) or `Cmd + Shift + R` (Mac)
+2. Clear browser cache
+3. Check JavaScript console for errors (F12)
+4. Verify app.js loads in Network tab
+5. Clear Cloudflare cache: Dashboard → Caching → Purge Everything
+6. Wait 2-3 minutes for full deployment
+
 ### Build Fails
 - Check GitHub repository is public or Cloudflare has access
 - Verify no syntax errors in HTML/JS/CSS

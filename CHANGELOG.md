@@ -2,6 +2,14 @@
 
 All notable changes to The ChitraHarsha project will be documented here.
 
+## [1.0.1] - 2025-01-01
+
+### 🔧 Fixed
+- Content visibility after Cloudflare Pages deployment
+- JavaScript initialization timing
+- Page layout padding and spacing
+- Added noscript fallback message
+
 ## [1.0.0] - 2025-01-01
 
 ### 🎉 Initial Release

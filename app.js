@@ -29,12 +29,18 @@ const BOTTLE_DESIGNS = [
     { id: 6, name: "Quantum Sensor Bottle", tech: "Real-time Monitoring", material: "Titanium Alloy", innovation: "Tracks usage, freshness, and optimal spray timing", image: "⚡", year: 2025 }
 ];
 
-// Initialize App
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize App - Run immediately
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
+
+function initApp() {
     initializeRates();
     navigateTo('HOME');
     initChat();
-});
+}
 
 // Live Currency Rates
 function initializeRates() {
@@ -80,7 +86,7 @@ function navigateTo(view) {
 // Render Home Page
 function renderHome() {
     return `
-        <div class="relative min-h-screen flex items-center justify-center overflow-hidden pt-10 bg-slate-950">
+        <div class="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-slate-950">
             <div class="absolute inset-0 pointer-events-none">
                 <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse"></div>
                 <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] animate-pulse"></div>
@@ -143,7 +149,7 @@ function renderHome() {
 // Render Shop
 function renderShop() {
     return `
-        <div class="pt-10 pb-20 px-4 max-w-7xl mx-auto min-h-screen">
+        <div class="py-20 px-4 max-w-7xl mx-auto min-h-screen">
             <div class="mb-8 border-b border-gray-800 pb-6">
                 <h2 class="text-4xl font-bold text-white mb-2">The <span class="text-cyan-400">Sugandh Collection</span></h2>
                 <p class="text-gray-400 text-sm">Perfumes • Deos • Room Care</p>
@@ -173,7 +179,7 @@ function renderShop() {
 // Render Innovative Bottles
 function renderBottles() {
     return `
-        <div class="pt-10 pb-20 px-4 max-w-7xl mx-auto min-h-screen">
+        <div class="py-20 px-4 max-w-7xl mx-auto min-h-screen">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-yellow-600/20 to-orange-600/20 border border-yellow-500/30 text-yellow-400 text-sm font-bold mb-6">
                     ✨ NEW FEATURE - 2025
@@ -229,7 +235,7 @@ function renderBottles() {
 // Render Jobs
 function renderJobs() {
     return `
-        <div class="pt-20 pb-20 px-4 min-h-screen flex items-center justify-center">
+        <div class="py-20 px-4 min-h-screen flex items-center justify-center">
             <div class="w-full max-w-2xl bg-slate-900/90 border border-cyan-500/30 rounded-3xl p-8 backdrop-blur-xl">
                 <h2 class="text-3xl font-bold text-white mb-6">💼 Career Opportunities</h2>
                 <p class="text-gray-400 mb-8">Join our team of 330+ professionals across 14 departments.</p>
@@ -255,7 +261,7 @@ function renderJobs() {
 // Render About
 function renderAbout() {
     return `
-        <div class="pt-20 pb-20 px-4 max-w-4xl mx-auto min-h-screen">
+        <div class="py-20 px-4 max-w-4xl mx-auto min-h-screen">
             <h2 class="text-4xl font-bold text-white mb-10 border-b border-gray-800 pb-4">About Us</h2>
             
             <div class="space-y-8">
