@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The ChitraHarsha - Future of Fragrance with Innovative Bottle Designs">
+    <title>The ChitraHarsha | Perfumes & Fragrances</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950 text-slate-200 font-sans">
+    <!-- Top Bar -->
+    <div id="topBar" class="bg-black border-b border-cyan-900/30">
+        <div class="overflow-hidden h-7 bg-gradient-to-r from-slate-950 via-cyan-950/30 to-slate-950">
+            <div id="marquee" class="flex gap-8 text-[10px] font-mono text-cyan-500/80 px-4 items-center whitespace-nowrap animate-marquee">
+                <span class="font-bold text-white">⚡ LIVE RATES:</span>
+                <span id="usdRate">USD: ₹83.10</span>
+                <span id="eurRate">EUR: ₹90.50</span>
+                <span class="text-orange-400 font-bold" id="chcRate">⚡ CHC: ₹82.00</span>
+                <span class="text-blue-400 ml-4">🖥️ MEGHRAJ CLOUD (GI): ACTIVE</span>
+                <span class="text-purple-400">🔒 SOVEREIGN DATA: INDIA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl border-b border-white/5 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('HOME')">
+                    <div class="relative w-10 h-10 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-cyan-500 blur-md opacity-50 animate-pulse"></div>
+                        <span class="text-3xl relative z-10">⚛️</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-slate-400">
+                            The ChitraHarsha
+                        </span>
+                        <span class="text-[9px] text-cyan-400 tracking-widest uppercase font-bold">Sugandh Veda • Parimala Vatikā</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <button onclick="navigateTo('SHOP')" class="relative p-2 text-gray-400 hover:text-cyan-400 transition-colors">
+                        🛍️
+                        <span id="cartBadge" class="hidden absolute -top-1 -right-1 h-4 w-4 items-center justify-center rounded-full bg-cyan-500 text-[10px] font-bold text-white">0</span>
+                    </button>
+                    
+                    <button id="loginBtn" onclick="navigateTo('LOGIN')" class="hidden md:flex bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500 text-white px-4 py-2 rounded-full font-bold text-xs transition-all items-center gap-2">
+                        🔒 Login
+                    </button>
+
+                    <button onclick="toggleSidebar()" class="p-3 text-white bg-cyan-900/20 hover:bg-cyan-500/20 rounded-full transition-all border border-cyan-500/30">
+                        <div class="flex flex-col gap-1.5 items-end">
+                            <span class="w-6 h-0.5 bg-cyan-400"></span>
+                            <span class="w-4 h-0.5 bg-cyan-400"></span>
+                            <span class="w-2 h-0.5 bg-cyan-400"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebarBackdrop" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50" onclick="toggleSidebar()"></div>
+    <div id="sidebar" class="fixed inset-y-0 right-0 w-80 bg-slate-950/90 backdrop-blur-3xl border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-10">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">⚛️ Menu</h3>
+                <button onclick="toggleSidebar()" class="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white">✕</button>
+            </div>
+            
+            <div class="flex-1 space-y-2 overflow-y-auto">
+                <button onclick="navigateTo('HOME'); toggleSidebar();" class="w-full text-left px-6 py-4 rounded-2xl bg-white/5 hover:bg-cyan-500/20 text-gray-300 hover:text-white font-bold text-sm transition-all">HOME</button>
+                <button onclick="navigateTo('SHOP'); toggleSidebar();" class="w-full text-left px-6 py-4 rounded-2xl bg-white/5 hover:bg-cyan-500/20 text-gray-300 hover:text-white font-bold text-sm transition-all">SHOP</button>
+                <button onclick="navigateTo('BOTTLES'); toggleSidebar();" class="w-full text-left px-6 py-4 rounded-2xl bg-white/5 hover:bg-cyan-500/20 text-gray-300 hover:text-white font-bold text-sm transition-all border border-yellow-500/30">✨ INNOVATIVE BOTTLES</button>
+                <button onclick="navigateTo('JOBS'); toggleSidebar();" class="w-full text-left px-6 py-4 rounded-2xl bg-white/5 hover:bg-cyan-500/20 text-gray-300 hover:text-white font-bold text-sm transition-all">JOBS</button>
+                <button onclick="navigateTo('ABOUT'); toggleSidebar();" class="w-full text-left px-6 py-4 rounded-2xl bg-white/5 hover:bg-cyan-500/20 text-gray-300 hover:text-white font-bold text-sm transition-all">ABOUT</button>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-white/10">
+                <div class="bg-gradient-to-br from-slate-900 to-black p-4 rounded-2xl border border-cyan-900/50">
+                    <p class="text-[10px] text-gray-400 uppercase mb-2 flex items-center justify-between">
+                        <span>☁️ MeghRaj Cloud</span>
+                        <span class="text-green-400">Online</span>
+                    </p>
+                    <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div class="h-full w-3/4 bg-gradient-to-r from-cyan-500 to-blue-500 animate-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent"></main>
+
+    <!-- Veda Live Chat -->
+    <button id="chatToggle" onclick="toggleChat()" class="fixed bottom-6 right-6 bg-gradient-to-br from-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-lg z-40 hover:scale-110 transition-all">
+        ✨
+    </button>
+
+    <div id="chatBox" class="hidden fixed bottom-6 right-6 w-80 md:w-96 h-[650px] bg-black/80 border border-white/10 rounded-3xl shadow-2xl flex flex-col z-50 backdrop-blur-3xl">
+        <div class="p-5 border-b border-white/5 flex justify-between items-center bg-gradient-to-r from-slate-900/50 to-cyan-900/10">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">⚛️</span>
+                <div>
+                    <h3 class="font-bold text-white text-sm">Veda Live</h3>
+                    <p class="text-[10px] text-gray-400 font-mono">Quantum Neural Net</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-gray-400 hover:text-white">✕</button>
+        </div>
+        
+        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+        
+        <div class="p-4 border-t border-white/10 bg-black/40 flex gap-3">
+            <input id="chatInput" type="text" placeholder="Ask Veda..." class="flex-1 bg-white/5 rounded-2xl px-5 py-3 text-sm text-white focus:outline-none border border-white/10 focus:border-cyan-500" onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()" class="bg-cyan-500 p-3 rounded-2xl text-black hover:bg-cyan-400">📤</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-gray-800 py-10 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-xs">© 2025 The ChitraHarshaVPK Ventures Pvt Ltd. All Rights Reserved.</p>
+            <div class="mt-4 flex justify-center gap-4 items-center opacity-50">
+                <span class="text-2xl">🇮🇳</span>
+                <p class="text-[10px] text-gray-600 max-w-xs text-left">Government of India Recognized Startup.<br/>Hosted on National Cloud (MeghRaj).</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
